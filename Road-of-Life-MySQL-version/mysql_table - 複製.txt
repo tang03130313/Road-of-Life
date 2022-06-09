@@ -1,0 +1,47 @@
+﻿create table patient(id int(11) unsigned not null auto_increment, name varchar(10) not null, phone varchar(10) not null,email varchar(40) not null,password varchar(15) not null,user_id varchar(11) default null,PRIMARY KEY(id),index index_name(name),index index_email(email),index index_userid(user_id))
+character set = utf8
+PARTITION BY HASH(id)
+PARTITIONS 10;
+
+insert patient(name,phone,email,password) values("陳彥志","0964523154","test@gmail.com","Test");
+insert patient(name,phone,email,password) values("王小名","0964523154","test_2@gmail.com","Test");
+insert patient(name,phone,email,password) values("林子其","0964523154","test_3@gmail.com","Test");
+
+
+create table doctor(id int not null auto_increment,doctorid varchar(10) not null,account varchar(10) not null,password varchar(15) not null,hospital varchar(50),department varchar(30) not null,name varchar(15) not null,PRIMARY KEY(id),index index_name(name),index index_hospital(hospital),index index_department(department),index index_account(account)) 
+character set = utf8
+PARTITION BY HASH(id)
+PARTITIONS 10;
+
+
+insert doctor (doctorid,account,password,hospital,department,name)values("A135468556","test","Test","台北長庚醫院","胸腔外科","郭建民");
+insert doctor (doctorid,account,password,hospital,department,name)values("A142356118","test2","Test","台北長庚醫院","骨科","王建民");
+insert doctor (doctorid,account,password,hospital,department,name)values("A452361586","test3","Test","林口長庚醫院","骨科","李傭正");
+insert doctor (doctorid,account,password,hospital,department,name)values("A124854336","test4","Test","林口長庚醫院","胸腔外科","王傭正");
+insert doctor (doctorid,account,password,hospital,department,name)values("A856792335","test4","Test","馬偕紀念醫院","牙科","陳幼榕");
+insert doctor (doctorid,account,password,hospital,department,name)values("A556123754","test4","Test","馬偕紀念醫院","骨科","陳傭民");
+
+
+create table doctor_auth(id int unsigned not null auto_increment,user_id varchar(11)not null, doctor_id varchar(20) not null,PRIMARY KEY(id),index index_user_id(user_id),index index_doctor_id(doctor_id)) 
+character set = utf8
+PARTITION BY HASH(id)
+PARTITIONS 20;  
+
+insert doctor_auth (user_id,doctor_id)values("A154236551","A556123754");
+insert doctor_auth (user_id,doctor_id)values("A154236551","A452361586");
+insert doctor_auth (user_id,doctor_id)values("A154236551","A142356118");
+
+create table health_passport(id int unsigned not null auto_increment,user_id varchar(11)not null,time datetime not null, passport json,PRIMARY KEY(id),index index_time(time)) 
+character set = utf8
+PARTITION BY HASH(id)
+PARTITIONS 20;  
+
+
+create table main_disease_list(id int not null auto_increment,category varchar(10) not null,name varchar(30) not null,imgurl text not null,detail text not null,score int not null,PRIMARY KEY(id),index index_category(category),index index_name(name),index index_score(score)) 
+character set = utf8
+PARTITION BY HASH(id)
+PARTITIONS 10;
+
+insert patient(category,name,imgurl,detail,score) values("常見疾病","心臟衰竭","test@gmail.com","Test");
+insert patient(name,phone,email,password) values("王小名","0964523154","test_2@gmail.com","Test");
+insert patient(name,phone,email,password) values("林子其","0964523154","test_3@gmail.com","Test");
