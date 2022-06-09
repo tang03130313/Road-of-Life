@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>index</title>
+		
+	{% load static %}
+
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/jquery.qtip.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/jquery.qtip.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.9.4/cytoscape.min.js"></script>
+
+        <script src="{% static 'cjs/cytoscape-qtip.js' %}"></script>
+        <script src="{% static 'cjs/config.js' %}"></script>
+        <script src="{% static 'cjs/cycy.js' %}"></script>
+        <script src="{% static 'cjs/logic.js' %}"></script>
+        <script src="{% static 'cjs/index.js' %}"></script>
+
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="row" id="header">
+            <div class="col-md-2 col-sm-12">
+                <img class="imgCenter img-responsive" src="{% static 'imgs/logo.png' %}" width="50%">
+            </div>
+            <div class="col-md-10 col-sm-12">
+                <div class="headerTextStyle nowrap">服務單位:</div>
+		<input disabled name="service_unit" type="text" class="input service_unit_def" value="{{service_unit}}">
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="headerTextStyle nowrap">醫師編號:</div>
+                <input disabled name="docter_id" type="text" class="input docter_id_password_def" value="{{docter_id}}">
+            </div>
+            <div class="col-md-4 col-sm-12"></div>
+            <div class="col-md-1 col-sm-12">
+                <form action="http://localhost:8000/web/logout/" method="post">
+                    <input type="submit" name="logout" value="登出" class="input submit_def">
+                </form>
+            </div>
+            <div class="col-md-1 hidden-sm hidden-xs">
+                <input type="image" class="settingBtn" onclick="" src="{% static 'imgs/settingbtn_2.png' %}" width="40%">
+            </div>
+        </div>
+        <div class="row">
+            <div id="left" class="col-md-2">
+                <div class="leftTextStyle">目標疾病</div>
+                <select id="target_disease" name="target_disease" class="input left_input_def">
+                    <option>- - -</option>
+                    <option>早產</option>
+                    <option>心臟衰竭</option>
+                </select>
+                <div class="leftTextStyle">病患身份證字號</div>
+                <input id="patient_id" name="patient_id" type="text" class="input left_input_def" onkeyup="value=value.replace(/[\W]/g,'') "
+onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))">
+                <!--<select id="patient_id_list" name="patient_id_list" class="input left_input_def">
+                    <option>- - -</option>
+                </select>-->
+                <div class="leftTextStyle">分析</div>
+                <button id="riskFactorBtn" type="riskFactorBtn" class="input left_input_def">風險係數</button>
+                <button id="keyPathwayBtn" type="keyPathwayBtn" class="input left_input_def">關鍵路徑</button>
+                <div class="pop1">
+                    <img src="{% static 'imgs/kwypathwayexplain.png' %}" width="500">
+                </div>
+            </div>
+            <div id="innerTitle" class="col-md-10">
+                <div class="innerTextStyle" id="analysisItemTitle"></div>
+            </div>
+            <div id="orSlider" class="col-md-10">
+                <div class="orSliderTextStyle" id="oddsRatioItemTitle"></div>
+                <div class="orSlider" id="oddsRatioSlider">
+                    <div id="custom-handle" class="ui-slider-handle"></div>
+                </div>
+            </div>
+            <div id="content" class="col-md-10">
+                <div id="cy">
+
+                </div>
+            </div>
+        </div>
+        <div class="row" id="footer">
+            <div class="col-md-2 col-sm-12">
+                <img class="imgCenter img-responsive" src="{% static 'imgs/logo.png' %}" width="27.5%">
+            </div>
+            <div class="col-md-4 col-sm-12">
+                
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="footerText">聯絡方式: xxx@gmail.com</div>
+            </div>
+            <div class="col-md-2 col-sm-12">
+                <div class="footerText">隱私政策、條款與細節</div>
+            </div>
+        </div>
+    </body>
+</html>

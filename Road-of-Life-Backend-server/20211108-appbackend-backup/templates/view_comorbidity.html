@@ -1,0 +1,251 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Comorbidity System View</title>
+        {% load static %}  
+        <script src="{% static '/js/liquidFillGauge.js' %}" language="JavaScript"></script>
+        <style>
+            body{
+                background-color: #FAFAFA;
+                padding:auto;
+            }
+            .liquidFillGaugeText { font-family: Helvetica; font-weight: bold; }
+            .liquidFillGaugeText { font-family: Helvetica; font-weight: bold; }
+            .Row
+            {
+                background-color: white;
+                display: table;
+                width: 99%;
+                table-layout: fixed;
+                border-spacing: 5px;
+            }
+            .Column
+            {
+                display: table-cell;
+                border: solid;
+                border-color: ghostwhite;
+            }
+            .fillgauge{
+                width: 50vw;
+                height: 40vh;
+                vertical-align: middle;
+            }
+            .svg-style {
+                font-weight: bold;
+                display: block;
+                margin: auto;
+            }
+        </style>
+    </head>
+    <body>
+        {% autoescape off %}
+        <div>
+        {{ plot_div }}
+        {{ plot_div_2 }}
+        {{ plot_div_3 }}
+        </div>
+        {% endautoescape %}
+
+        <div class="Row">
+            <!--<div class="Column"><svg id="fillgauge1" width="97%" height="250"></svg></div>-->
+            <div class="Column">
+                <h2 style="text-align:center">WJ Score</h2>
+                <svg id="fillgauge2" class="fillgauge"></svg>
+            </div>
+            <div class="Column">
+                <h2 style="text-align:center">Relative Risk</h2>
+                <svg id="fillgauge3"class="fillgauge"></svg>
+            </div>
+        </div>
+        <br> 
+        <div class="Row">
+            <div class="Column"><h2 style="text-align:center">Heart Failure - Ranking of Relative Risk</h2>
+                <div id="bar-chart"></div>
+                <!--<div id="detail-color" style="display:inline;">color</div><div id="detail-text" style="display:inline;">text</div>
+                -->
+            </div>
+        </div>
+        
+        
+    </body>
+    <script src="{% static '/js/d3.v5.min.js' %}" language="JavaScript"></script>
+    <script>
+        let data = [{
+                key: '401',
+                value: 8.37
+            },
+            {
+                key: '780',
+                value: 7.16
+            },
+            {
+                key: '372',
+                value: 5.71
+            },
+            {
+                key: '786',
+                value: 5.57
+            },
+            {
+                key: '414',
+                value: 5.55
+            },
+            {
+                key: '466',
+                value: 5.53
+            },
+            {
+                key: '402',
+                value: 5.29
+            },
+            {
+                key: '724',
+                value: 5.27
+            },
+            {
+                key: '250',
+                value: 5.00
+            },
+            {
+                key: '715',
+                value: 4.99
+            },
+            {
+                key: '729',
+                value: 4.95
+            },
+            {
+                key: '564',
+                value: 4.93
+            },
+            {
+                key: '535',
+                value: 4.87
+            },
+            {
+                key: '272',
+                value: 4.67
+            },
+            {
+                key: '366',
+                value: 4.65
+            }
+        ]; 
+        data = data.reverse();
+        let Xdatas = data.map(function(d) {return d.value}),
+            Ydatas = data.map(function(d) {return d.key});
+        let width = document.body.offsetWidth*0.75, height = document.body.offsetHeight*1.2;
+        let x = d3.scaleLinear().domain([d3.min(Xdatas) - 5, d3.max(Xdatas)]).rangeRound([0, width]);
+        let y = d3.scaleBand().domain(Ydatas).rangeRound([height*0.9, 0]);
+        
+        let padding = {left: 50, top: 20, right: 50, bottom: 50};
+        let svg = d3.select('#bar-chart').append('svg').attr('width', width + padding.left).attr('height', height + padding.bottom).attr("class","svg-style");
+        let g = svg.append('g').attr('transform', 'translate(' + padding.left + ',' + padding.top + ')');
+        // 表頭
+        g.append('text').attr('transform', 'translate(' + (width/3 - padding.left) + ',0)')
+            .attr('font-weight', 600).text('').style("font-weight","bold");
+        // x軸和y軸
+        g.append('g').attr('transform', 'translate(0,' + height*0.9 + ')')
+            .call(d3.axisBottom(x));
+        g.append('g').call(d3.axisLeft(y).ticks(10));
+        
+        chart = g.selectAll('.bar').data(data).enter().append('g');
+        // 矩形
+        chart.append('rect')
+            .attr('x', function(d) {
+                return x(x.domain()[0]) + 5;
+            })
+            .attr('cursor', 'pointer')
+            .attr('y', function(d) {
+                return y(d.key);
+            })
+            .attr('fill', function(d) {
+                // 隨機顏色
+                return '#' + Math.floor(Math.random() * 0xffffff).toString(16);
+            })
+            .attr('stroke', '#FFF').attr('stroke-width', '3px')
+            .transition()
+            .delay(function(d, i) {
+                return (i + 1) * 50;
+            }).duration(2000).ease(d3.easeBounceIn)
+            .attr('width', function(d) {
+                return x(d.value);
+            }).attr('height', y.bandwidth());
+        // 矩形文字
+        chart.append('text').attr('fill', '#FFF')
+            .attr('y', function(d) {
+                return y(d.key) + 12;
+            })
+            .attr('x', function(d) {
+                return x(x.domain()[0]);
+            })
+            .transition().delay(function(d, i) {
+                return (i + 1) * 100
+            })
+            .duration(2000).ease(d3.easeBounceIn)
+            .attr('dx', function(d) {
+                return x(d.value) - 30;
+            }).attr('dy', 15)
+            .text(function(d) {return d.value});
+        // 懸浮提示框
+        tooltip = d3.select('body').append('div');
+        
+        // hover事件
+        chart.on('mouseover', function() {
+            d3.select(this).attr('opacity', 0.5);
+            // 懸浮在直方圖上時，顯示提示框
+            tooltip.html('我是提示框').transition().duration(500).style('left', d3.event.pageX - 20).style('top', d3.event.pageY + 20).style('opacity', 1.0);
+        }).on('mouseout', function() {
+            d3.select(this).transition().delay(100).duration(500).attr('opacity', 1.0);
+        });
+        // 當鼠標移出svg畫布時，就將提示框隱藏掉，考慮到鼠標移出時顯示的動畫還未完成，需要加transition()過濾
+        svg.on('mouseout', function() {
+            tooltip.transition().style('opacity', 0);
+        });
+
+
+        //detail
+
+        
+    </script>
+    <script src="{% static '/js/d3.v3.min.js' %}" language="JavaScript"></script>
+        <script language="JavaScript">
+            // gauge1 uses the default liquid gauge setting
+         //var gauge1 = loadLiquidFillGauge("fillgauge1", 55);
+         
+         // gauge2 uses the custom gauge setting
+         var config1 = liquidFillGaugeDefaultSettings();
+         config1.circleColor = "#178BCA";
+         config1.textColor = "#222224";
+         config1.waveTextColor = "#222224";
+         config1.waveColor = "#FFD700";
+         config1.circleThickness = 0.05;
+         config1.textVertPosition = 0.2;
+         config1.waveAnimateTime = 1000;
+         var gauge2 = loadLiquidFillGauge("fillgauge2", 37, config1);
+         
+         // gauge3 uses the custom gauge setting
+         var config2 = liquidFillGaugeDefaultSettings();
+         config2.circleColor = "#178BCA";
+         config2.textColor = "#222224";
+         config2.waveTextColor = "#222224";
+         config2.waveColor = "#d64d4d";
+         config1.circleThickness = 0.05;
+         config2.textVertPosition = 0.2;
+         config2.waveAnimateTime = 1000;
+         var gauge3 = loadLiquidFillGauge("fillgauge3", 46, config2);
+        
+        
+         // gauge onclick responds to random fill percentages.
+         function NewValue() {
+           if (Math.random() > .5) {
+             return Math.round(Math.random() * 100);
+           } else {
+             return (Math.random() * 100).toFixed(1);
+           }
+         }
+		
+         </script>
+</html>
