@@ -1,0 +1,17 @@
+python manage.py runserver_plus --cert tlsservser.crt 0.0.0.0:8000
+
+python manage.py runserver_plus --cert lunsenlu.cf_certificate.der 0.0.0.0:433
+
+python manage.py runserver_plus --cert tlsservser.crt 0.0.0.0:433
+
+python manage.py runserver 0.0.0.0:8000
+
+openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout tlsservser.key -out tlsservser.crt
+
+TW
+Taiwan
+Taipei
+NTUT
+Biolab
+140.124.183.197
+gblab.cs.twp@gmail.com
