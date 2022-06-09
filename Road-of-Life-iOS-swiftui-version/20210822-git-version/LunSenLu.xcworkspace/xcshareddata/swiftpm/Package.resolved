@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "PopupView",
+        "repositoryURL": "https://github.com/exyte/PopupView.git",
+        "state": {
+          "branch": null,
+          "revision": "b1834668b34b9ec22dfe7c462dfbb694edc7ec2d",
+          "version": "1.0.1"
+        }
+      },
+      {
+        "package": "ZipArchive",
+        "repositoryURL": "https://github.com/ZipArchive/ZipArchive.git",
+        "state": {
+          "branch": null,
+          "revision": "825ff12a74a94c54e737e279604c27e6740e8a2c",
+          "version": "2.4.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
