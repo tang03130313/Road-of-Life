@@ -1,0 +1,153 @@
+.pop1{
+    position: absolute;
+    display: none;
+    padding: 10px;
+    z-index: 10;
+}
+
+#cy{
+    height: 98%;
+}
+
+.orSliderTextStyle{
+    color: #ffffff;
+    display: inline;
+    font-size: large;
+}
+
+.orSlider{
+    width: 20%;
+    margin: 1% 4%;
+    float: right;
+}
+
+.innerTextStyle{
+    color: #ffffff;
+    text-align: center;
+    font-size: x-large;
+}
+
+.left_input_def{
+    margin: 4%;
+    width: 80%;
+}
+
+.leftTextStyle{
+    color: #ffffff;
+    font-size: x-large;
+    margin: 3%
+}
+
+.settingBtn{
+    margin: 9%;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+.nowrap{
+    white-space: nowrap;
+}
+
+.submit_def{
+    width: 70%;
+    margin: 13% 0%;
+}
+
+.service_unit_def{
+    width: 15%;
+    margin: 1.1%;
+}
+
+.docter_id_password_def{
+    width: 39%;
+    margin: 2.9%;
+}
+
+.input{
+    background-color: #3C3C3C;
+    border-color: #3489EB;
+    border-style: solid;
+    color: #FFFFFF;
+    border-width: 2px;
+    height: 25px;
+}
+
+.headerTextStyle{
+    color: white;
+    display: inline;
+}
+
+.footerText{
+    color: #C6C6C6;
+    text-align: center;
+    margin: 2.25rem 0rem;
+}
+
+.imgCenter{
+    margin: auto;
+    display: block;
+}
+
+#header{
+    background: #3C3C3C;
+}
+
+#left{
+    background: #333333;
+    height: 100vh;
+}
+
+#innerTitle{
+    background: #252526;
+    height: 5vh;
+}
+
+#orSlider{
+    background: #1E1E1E;
+    height: 5vh;
+}
+
+#content{
+    background: #1E1E1E;
+    height: 90vh;
+}
+
+#footer{
+    background: #3C3C3C;
+}
+
+#custom-handle {
+    width: 3em;
+    height: 1.6em;
+    top: 50%;
+    margin-top: -.8em;
+    text-align: center;
+    line-height: 1.6em;
+}
+
+@media (max-width: 992px){
+    .input{
+        width: 100%;
+        margin: 1.5% 0%;
+    }
+    .leftTextStyle{
+        color: #ffffff;
+        font-size: x-large;
+        margin: 0%
+    }
+    #left{
+        height: auto;
+    }
+    .innerTextStyle{
+        font-size: large;
+    }
+    .orSlider{
+        width: 40%;
+    }
+    #innerTitle{
+        background: #1E1E1E;
+        height: 5vh;
+    }
+}
