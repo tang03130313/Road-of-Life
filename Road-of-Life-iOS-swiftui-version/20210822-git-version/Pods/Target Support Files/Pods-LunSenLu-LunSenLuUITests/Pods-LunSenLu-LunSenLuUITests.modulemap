@@ -1,0 +1,6 @@
+framework module Pods_LunSenLu_LunSenLuUITests {
+  umbrella header "Pods-LunSenLu-LunSenLuUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

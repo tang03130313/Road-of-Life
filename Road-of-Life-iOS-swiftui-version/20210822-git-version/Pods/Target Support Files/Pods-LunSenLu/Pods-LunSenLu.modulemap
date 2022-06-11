@@ -1,0 +1,6 @@
+framework module Pods_LunSenLu {
+  umbrella header "Pods-LunSenLu-umbrella.h"
+
+  export *
+  module * { export * }
+}

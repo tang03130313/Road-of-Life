@@ -1,0 +1,6 @@
+${PODS_ROOT}/Target Support Files/Pods-LunSenLu/Pods-LunSenLu-frameworks.sh
+${BUILT_PRODUCTS_DIR}/BottomSheet/BottomSheet.framework
+${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework
+${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework
+${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework
+${BUILT_PRODUCTS_DIR}/Zip/Zip.framework
