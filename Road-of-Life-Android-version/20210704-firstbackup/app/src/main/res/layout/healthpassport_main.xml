@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DoctorAuthActivity">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:minHeight="60dp"
+            android:background="@color/main">
+
+            <ImageView
+                android:id="@+id/health_passport_previous"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:src="@drawable/arrow_white"
+                android:scaleX="0.5"
+                android:scaleY="0.5"
+                android:scaleType="centerInside"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:text="@string/health_passport"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/health_main_edit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="@string/edit"
+                android:textColor="@color/white"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/health_main_finish"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:text="@string/finish"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                />
+        </TableRow>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ScrollView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/pass_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible">
+                    </androidx.recyclerview.widget.RecyclerView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        />
+                </LinearLayout>
+            </ScrollView>
+
+            <com.wang.avi.AVLoadingIndicatorView
+                android:id="@+id/passport_loading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="30dp"
+                android:gravity="center"
+                android:visibility="visible"
+                app:indicatorName="BallClipRotateIndicator"
+                app:indicatorColor="@color/main"
+                android:scaleX="0.2"
+                android:scaleY="0.2"/>
+            <TextView
+                android:id="@+id/passport_empty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="30dp"
+                android:gravity="center"
+                android:text="@string/health_passport_empty"
+                android:textSize="15sp"
+                android:visibility="gone" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:minHeight="50dp"
+                android:layout_marginBottom="50dp"
+                android:layout_gravity="bottom|end">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    />
+
+                <Button
+                    android:id="@+id/health_pass_insert"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="10"
+                    android:background="@drawable/bg_round_button"
+                    android:contentDescription="Round Button"
+                    android:text="@string/insert"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    />
+
+            </LinearLayout>
+        </FrameLayout>
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

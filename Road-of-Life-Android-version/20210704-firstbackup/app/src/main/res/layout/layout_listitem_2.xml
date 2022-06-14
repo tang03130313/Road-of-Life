@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp"
+    android:id="@+id/parent_layout">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/delete"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="end|center_vertical"
+            android:gravity="end|center_vertical"
+            android:src="@drawable/remove"
+            android:layout_weight="1"
+            android:visibility="gone"
+            />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:id="@+id/image"
+            android:src="@drawable/book"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="12"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Canada"
+                android:id="@+id/image_name"
+                android:textColor="#000"
+                android:layout_centerVertical="true"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/image_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                android:text="Canada"
+                android:textColor="#000"
+                android:textSize="10sp" />
+
+
+        </LinearLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/health_pass_radio_checked"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:src="@drawable/circle_button_2"
+            android:visibility="gone"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/health_pass_radio_unchecked"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:src="@drawable/circle_button"
+            android:visibility="visible"
+            android:scaleX="0.8"
+            android:scaleY="0.8"/>
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/health_pass_radio_avi"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            app:indicatorName="BallClipRotateIndicator"
+            app:indicatorColor="@color/main"
+            android:visibility="gone"
+            />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
