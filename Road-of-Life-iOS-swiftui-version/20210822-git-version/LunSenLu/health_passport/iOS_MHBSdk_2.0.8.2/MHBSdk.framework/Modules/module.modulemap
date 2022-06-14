@@ -1,0 +1,4 @@
+framework module MHBSdk {
+  header "MHBSdk-Swift.h"
+  requires objc
+}
