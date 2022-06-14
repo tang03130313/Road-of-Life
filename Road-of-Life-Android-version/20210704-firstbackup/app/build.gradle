@@ -1,0 +1,69 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.0"
+    defaultConfig {
+        //applicationId "com.bilab.lunsenluandroid"
+        applicationId "com.bilab.LunSenLu"
+        minSdkVersion 23
+        targetSdkVersion 30
+        versionCode 10004
+        versionName '1.0.0'
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    // 解決使用zipJ4上有問題，最新版本2.1.1會造成Error: Invoke-customs are only supported starting with Android O (--min-api 26)
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.navigation:navigation-fragment:2.0.0'
+    implementation 'androidx.navigation:navigation-ui:2.0.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    /* gson、okhttp第三方套件 */
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.google.code.gson:gson:2.8.2'
+
+    /* Library nhisdk.aar、dexguard-runtime.aar */
+    implementation project(":dexguard-runtime")
+    //implementation project(":nhisdk_beta1.0.4")
+    //implementation project(":nhisdk_Beta1.0.2")
+    implementation project(":nhisdk_Beta1.07")
+
+    // https://mvnrepository.com/artifact/net.lingala.zip4j/zip4j
+    // 版本2.1.1使用起來會有問題  // 解決方法 : https://blog.csdn.net/yinxing2008/article/details/83619313
+    implementation group: 'net.lingala.zip4j', name: 'zip4j', version: '2.6.1'//2.1.1 1.3.2
+
+    implementation 'com.wang.avi:library:2.1.3'
+
+    //circle imageview
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    //recyclerview
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+    /*//glidebumptech
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'*/
+
+    implementation 'com.android.volley:volley:1.1.1'
+    implementation "androidx.security:security-crypto:1.0.0-alpha02"
+}
